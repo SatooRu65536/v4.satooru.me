@@ -6,7 +6,7 @@ const getContents = baseServerFn.handler(async ({ context }) => {
   return contents;
 });
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute('/_theme/')({
   component: RouteComponent,
   loader: () => getContents(),
 });
