@@ -1,0 +1,58 @@
+.header {
+  height: $header-height;
+  padding-inline: 40px;
+
+  background-color: rgba($color: $color-background, $alpha: 0.5);
+  backdrop-filter: blur(2px);
+
+  display: flex;
+  gap: $gap-md;
+  align-items: center;
+
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-top;
+
+  &[data-fixed='true'] {
+    position: fixed;
+  }
+
+  @include mobile {
+    padding-inline: 20px;
+  }
+
+  .title_container {
+    display: contents;
+
+    .icon {
+      height: 40px;
+    }
+
+    .title {
+      font-size: $fontsize-lg;
+      font-weight: normal;
+      color: $color-text;
+
+      @include mobile {
+        font-size: $fontsize-md;
+      }
+    }
+  }
+
+  .nav {
+    margin-left: 20px;
+    display: flex;
+    gap: $gap-md;
+
+    .link {
+      color: $color-text;
+      transition: $transition;
+
+      &:hover {
+        color: $color-accent;
+      }
+    }
+  }
+}
