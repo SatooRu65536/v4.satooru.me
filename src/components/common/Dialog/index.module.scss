@@ -1,0 +1,55 @@
+.Trigger {
+  all: unset;
+}
+
+.Backdrop {
+  min-height: 100dvh;
+
+  background-color: $color-text;
+
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+
+  transition: opacity 150ms;
+  opacity: 0.2;
+
+  &[data-starting-style],
+  &[data-ending-style] {
+    opacity: 0;
+  }
+}
+
+.Popup {
+  margin-top: -2rem;
+  padding: 1.5rem;
+  width: 24rem;
+  max-width: calc(100vw - 3rem);
+
+  color: $color-text;
+  background-color: $color-background;
+  border-radius: $radius-md;
+  outline: 1px solid $color-accent;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 101;
+
+  display: grid;
+  gap: $gap-md;
+
+  transform: translate(-50%, -50%);
+  transition: all 150ms;
+
+  &[data-starting-style],
+  &[data-ending-style] {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+}
+
+.Title {
+  font-size: $fontsize-lg;
+  font-weight: bold;
+}

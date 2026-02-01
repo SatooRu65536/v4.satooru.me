@@ -5,6 +5,7 @@ CREATE TABLE `posts` (
 	`category` text NOT NULL,
 	`icons` text DEFAULT '[]' NOT NULL,
 	`draft` integer DEFAULT false NOT NULL,
+	`thumbnail` text DEFAULT '' NOT NULL,
 	`created_at` integer NOT NULL,
 	`updated_at` integer NOT NULL,
 	`deleted` integer DEFAULT false NOT NULL

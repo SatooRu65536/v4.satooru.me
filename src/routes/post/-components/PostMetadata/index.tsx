@@ -4,15 +4,19 @@ import styles from './index.module.scss';
 import MultipleSelect from '@/components/common/MultiSelect';
 import Select from '@/components/common/Select';
 import { CATEGORIES, Category } from '@/consts/categories';
+import { ImageIcon } from 'lucide-react';
+import Dialog from '@/components/common/Dialog';
+import { ImageDropZone } from '@/components/common/ImageDropZone';
 
 interface PostMetadataProps {
   post: EditPostSchema;
   setTitle: (title: string) => void;
   setCategory: (category: Category | null) => void;
   setIcons: (icons: IconKey[]) => void;
+  setThumbnail: (thumbnail: string) => void;
 }
 
-export default function PostMetadata({ post, setTitle, setCategory, setIcons }: PostMetadataProps) {
+export default function PostMetadata({ post, setTitle, setCategory, setIcons, setThumbnail }: PostMetadataProps) {
   const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
@@ -52,6 +56,22 @@ export default function PostMetadata({ post, setTitle, setCategory, setIcons }: 
             ))}
           </>
         )}
+      </div>
+
+      <div className={styles.thumbnail_container}>
+        <label htmlFor="thumbnail">
+          <Dialog trigger={<ImageIcon />} title="Thumbnail">
+            <ImageDropZone onChange={setThumbnail} value={post.thumbnail} />
+            <input
+              className={styles.thumbnail_url}
+              type="url"
+              id="thumbnail"
+              value={post.thumbnail}
+              onChange={(e) => setThumbnail(e.target.value)}
+              placeholder="thumbnail url"
+            />
+          </Dialog>
+        </label>
       </div>
     </div>
   );

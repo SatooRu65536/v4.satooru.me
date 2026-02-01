@@ -1,8 +1,6 @@
 import styles from './index.module.scss';
 import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
-import { baseServerPostFn } from '@/lib/baseServerFn';
-import { getImageUrl, getKey } from '@/utils/img';
 import { highlight, languages } from 'prismjs';
 import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
@@ -12,6 +10,7 @@ import remarkRehype from 'remark-rehype';
 import { remark } from 'remark';
 import 'prismjs/themes/prism.min.css';
 import '@/styles/md-styles.scss';
+import { uploadImageServer } from '@/functions/uploadImage';
 
 const remarkProcessor = remark()
   .use(remarkBreaks)
@@ -29,18 +28,6 @@ const langs = [
 ] as const;
 const existLangs: [string, string][] = Object.keys(languages).map((key) => [key, key]);
 const langMap = new Map<string, string>([...langs, ...existLangs]);
-
-const uploadImageServer = baseServerPostFn
-  .inputValidator((data: { content: Uint8Array; filename: string }) => data)
-  .handler(async ({ context, data }) => {
-    const key = getKey(data.filename);
-
-    const res = await context.r2.put(key, data.content);
-    if (res == null) throw new Error('Image upload failed');
-
-    const url = getImageUrl(key);
-    return { url };
-  });
 
 interface PostEditPageProps {
   markdown: string;

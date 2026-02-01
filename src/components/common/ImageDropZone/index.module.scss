@@ -1,0 +1,24 @@
+.dropzone {
+  border: dotted 2px $color-primary;
+  border-radius: $radius-md;
+  aspect-ratio: 2/1;
+
+  &[data-dragging='true'] {
+    border-color: $color-accent;
+  }
+
+  .preview {
+    width: 100%;
+    aspect-ratio: 2/1;
+    object-fit: contain;
+  }
+
+  .message {
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $color-text;
+  }
+}

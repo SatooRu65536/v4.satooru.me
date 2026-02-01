@@ -6,6 +6,7 @@ export const postSchema = z.object({
   title: z.string().min(1, 'タイトルを入力してください'),
   content: z.string().min(1, 'コンテンツを入力してください'),
   category: z.enum(CATEGORIES, 'カテゴリーが不正です'),
+  thumbnail: z.url('サムネイルのURLが不正です'),
   icons: z.enum(ICON_KEYS, 'アイコンが不正です').array(),
   draft: z.boolean(),
 });
@@ -15,6 +16,7 @@ export const editPostSchema = z.object({
   title: z.string(),
   content: z.string(),
   icons: z.enum(ICON_KEYS, 'アイコンが不正です').array(),
+  thumbnail: z.url('サムネイルのURLが不正です').optional(),
   category: z.enum(CATEGORIES).nullable(),
 });
 export type EditPostSchema = z.infer<typeof editPostSchema>;

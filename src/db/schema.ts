@@ -19,6 +19,7 @@ export const postsTable = sqliteTable('posts', {
   category: text('category', { enum: CATEGORIES }).notNull().$type<Category>(),
   icons: text('icons', { mode: 'json' }).notNull().default('[]').$type<IconKey[]>(),
   draft: integer('draft', { mode: 'boolean' }).notNull().default(false).$type<boolean>(),
+  thumbnail: text('thumbnail').notNull().$type<string>(),
   createdAt: createdAt(),
   updatedAt: updatedAt(),
   deleted: integer('deleted', { mode: 'boolean' }).notNull().default(false).$type<boolean>(),

@@ -19,7 +19,7 @@
     border: solid 1px $color-primary;
     cursor: pointer;
 
-    &[data-type='reset'] {
+    &.reset {
       margin-inline: 10px;
       padding: 5px;
 
@@ -29,20 +29,35 @@
       background-color: $color-background;
       border-radius: $radius-full;
       border-color: $color;
+
+      &[disabled] {
+        cursor: not-allowed;
+        color: color.mix(white, $color-primary, 30%);
+      }
     }
 
-    &[data-type='draft'] {
+    &.draft {
       padding-left: 30px;
       color: $color-primary;
       background-color: $color-background;
       border-radius: $radius-full 0 0 $radius-full;
+
+      &[disabled] {
+        cursor: not-allowed;
+        color: color.mix($color-primary, white, 50%);
+      }
     }
 
-    &[data-type='ship'] {
+    &.ship {
       padding-right: 30px;
       color: $color-on-primary;
       background-color: $color-primary;
       border-radius: 0 $radius-full $radius-full 0;
+
+      &[disabled] {
+        cursor: not-allowed;
+        background-color: color.mix($color-primary, white, 50%);
+      }
     }
   }
 }

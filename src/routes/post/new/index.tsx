@@ -1,7 +1,16 @@
 import PostEditor from '@/components/common/PostEditor';
 import PageLayout from '@/layouts/Page';
 import { createFileRoute } from '@tanstack/react-router';
-import { postStore, resetPost, setCategory, setContent, setIcons, setInitialPost, setTitle } from './-stores/post';
+import {
+  postStore,
+  resetPost,
+  setCategory,
+  setContent,
+  setIcons,
+  setInitialPost,
+  setThumbnail,
+  setTitle,
+} from './-stores/post';
 import { useStore } from '@tanstack/react-store';
 import ControlPanel from '../-components/PostControlPanel';
 import PostMetadata from '../-components/PostMetadata';
@@ -20,7 +29,13 @@ function RouteComponent() {
 
   return (
     <PageLayout fixed>
-      <PostMetadata post={post} setTitle={setTitle} setCategory={setCategory} setIcons={setIcons} />
+      <PostMetadata
+        post={post}
+        setTitle={setTitle}
+        setCategory={setCategory}
+        setIcons={setIcons}
+        setThumbnail={setThumbnail}
+      />
       <ControlPanel post={post} resetPost={resetPost} />
       <PostEditor markdown={post.content} onEdit={setContent} />
     </PageLayout>

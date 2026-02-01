@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "46dbd913-54b9-4e4d-b427-51698fe0073c",
+  "id": "c020a17a-1722-46b2-9a5b-5e33fa91303c",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "posts": {
@@ -50,6 +50,14 @@
           "notNull": true,
           "autoincrement": false,
           "default": false
+        },
+        "thumbnail": {
+          "name": "thumbnail",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
         },
         "created_at": {
           "name": "created_at",

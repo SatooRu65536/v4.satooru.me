@@ -52,6 +52,12 @@ export const addIcon = (icon: IconKey) => {
     icons: [...old.icons, icon],
   }));
 };
+export const setThumbnail = (thumbnail: string) => {
+  postStore.setState((old) => ({
+    ...old,
+    thumbnail,
+  }));
+};
 export const removeIcon = (icon: IconKey) => {
   postStore.setState((old) => ({
     ...old,
