@@ -1,5 +1,5 @@
 import { postsTable } from '@/db/schema';
-import { baseServerFn } from '@/lib/baseServerFn';
+import { baseServerGetFn } from '@/lib/baseServerFn';
 import { postIdSchema } from '@/types/brand';
 import { Post } from '@/types/post';
 import { createFileRoute, notFound } from '@tanstack/react-router';
@@ -10,7 +10,7 @@ const paramsSchema = z.object({
   postId: postIdSchema,
 });
 
-const getPostByPostId = baseServerFn('GET')
+const getPostByPostId = baseServerGetFn
   .inputValidator(paramsSchema)
   .handler(async ({ context, data }): Promise<Post> => {
     const contentRecord = await context.db.query.postsTable.findFirst({

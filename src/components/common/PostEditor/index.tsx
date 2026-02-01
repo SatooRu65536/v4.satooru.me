@@ -2,16 +2,13 @@ import { marked } from 'marked';
 import styles from './index.module.scss';
 import MdEditor from 'react-markdown-editor-lite';
 import 'react-markdown-editor-lite/lib/index.css';
-import { baseServerFn } from '@/lib/baseServerFn';
-import { v4 } from 'uuid';
-import { getImageUrl } from '@/utils/img';
+import { baseServerPostFn } from '@/lib/baseServerFn';
+import { getImageUrl, getKey } from '@/utils/img';
 
-const uploadImageServer = baseServerFn('POST')
+const uploadImageServer = baseServerPostFn
   .inputValidator((data: { content: Uint8Array; filename: string }) => data)
   .handler(async ({ context, data }) => {
-    const uuid = v4();
-    const ext = data.filename.split('.').pop();
-    const key = `images/${uuid}.${ext}`;
+    const key = getKey(data.filename);
 
     const res = await context.r2.put(key, data.content);
     if (res == null) throw new Error('Image upload failed');

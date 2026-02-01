@@ -26,7 +26,8 @@
 	"r2_buckets": [
 		{
 			"bucket_name": "satooru-me",
-			"binding": "r2"
+			"binding": "r2",
+			"remote": true
 		}
 	]
 }
