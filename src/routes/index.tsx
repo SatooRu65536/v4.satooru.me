@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import AboutSection from './-components/sections/About';
 import LinksSection from './-components/sections/Links';
 import SkillsSection from './-components/sections/Skills';
-// import ProjectsSection from './-components/sections/Projects';
+import ProjectsSection from './-components/sections/Projects';
 import WorksSection from './-components/sections/Works';
 import ExperiencesSection from './-components/sections/Experiences';
 import PresentationsSection from './-components/sections/Presentations';
@@ -21,7 +21,7 @@ function RouteComponent() {
       <AboutSection />
       <LinksSection />
       <SkillsSection />
-      {/* <ProjectsSection /> */}
+      <ProjectsSection />
       <WorksSection />
       <ExperiencesSection />
       <PresentationsSection />

@@ -1,14 +1,10 @@
-import { Suspense, type ReactElement } from 'react';
-import Loading from '@/components/common/Loading';
 import SectionLayout from '@/layouts/Section';
 import { InnerProjectsSection } from './Inner';
 
-export default function ProjectsSection(): ReactElement {
+export default function ProjectsSection() {
   return (
     <SectionLayout title="Active Projects">
-      <Suspense fallback={<Loading />}>
-        <InnerProjectsSection />
-      </Suspense>
+      <InnerProjectsSection />
     </SectionLayout>
   );
 }

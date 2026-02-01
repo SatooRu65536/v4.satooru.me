@@ -12,7 +12,7 @@ export default function SkillsSection(): ReactElement {
         {Object.entries(SKILLS).map(([category, skills]) => (
           <div key={category} className={styles.grid}>
             <FadeIn key={category} className={styles.heading}>
-              <h1>{category}</h1>
+              <h2 className={styles.heading}>{category}</h2>
             </FadeIn>
 
             {skills.map((iconKey) => (
