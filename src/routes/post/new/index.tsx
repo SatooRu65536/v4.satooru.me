@@ -1,19 +1,28 @@
 import PostEditor from '@/components/common/PostEditor';
 import PageLayout from '@/layouts/Page';
 import { createFileRoute } from '@tanstack/react-router';
-import { markdownStore, setMarkdown } from './-store/md';
+import { postStore, resetPost, setCategory, setContent, setIcons, setInitialPost, setTitle } from './-stores/post';
 import { useStore } from '@tanstack/react-store';
+import ControlPanel from '../-components/PostControlPanel';
+import PostMetadata from '../-components/PostMetadata';
+import { useEffect } from 'react';
 
 export const Route = createFileRoute('/post/new/')({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const markdown = useStore(markdownStore);
+  const post = useStore(postStore);
+
+  useEffect(() => {
+    setInitialPost();
+  }, []);
 
   return (
     <PageLayout fixed>
-      <PostEditor markdown={markdown} onEdit={setMarkdown} />
+      <PostMetadata post={post} setTitle={setTitle} setCategory={setCategory} setIcons={setIcons} />
+      <ControlPanel post={post} resetPost={resetPost} />
+      <PostEditor markdown={post.content} onEdit={setContent} />
     </PageLayout>
   );
 }

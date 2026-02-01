@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "94c80500-3310-4a9a-8638-e834772b19ed",
+  "id": "33b9c960-18c1-4db8-8601-620b5071943d",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "posts": {
@@ -28,6 +28,13 @@
           "notNull": true,
           "autoincrement": false
         },
+        "category": {
+          "name": "category",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
         "icons": {
           "name": "icons",
           "type": "text",
@@ -35,6 +42,14 @@
           "notNull": true,
           "autoincrement": false,
           "default": "'[]'"
+        },
+        "draft": {
+          "name": "draft",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": false
         },
         "created_at": {
           "name": "created_at",
@@ -49,6 +64,14 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "deleted": {
+          "name": "deleted",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": false
         }
       },
       "indexes": {

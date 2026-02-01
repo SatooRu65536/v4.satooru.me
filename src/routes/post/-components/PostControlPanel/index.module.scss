@@ -1,0 +1,48 @@
+.control_panel {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  z-index: $z-middle;
+
+  button {
+    all: unset;
+
+    padding: 5px 20px;
+
+    font-size: $fontsize-lg;
+    font-weight: bold;
+
+    display: inline-flex;
+    align-items: center;
+    gap: $gap-sm;
+
+    border: solid 1px $color-primary;
+    cursor: pointer;
+
+    &[data-type='reset'] {
+      margin-inline: 10px;
+      padding: 5px;
+
+      $color: color.mix(white, $color-primary, 50%);
+
+      color: $color;
+      background-color: $color-background;
+      border-radius: $radius-full;
+      border-color: $color;
+    }
+
+    &[data-type='draft'] {
+      padding-left: 30px;
+      color: $color-primary;
+      background-color: $color-background;
+      border-radius: $radius-full 0 0 $radius-full;
+    }
+
+    &[data-type='ship'] {
+      padding-right: 30px;
+      color: $color-on-primary;
+      background-color: $color-primary;
+      border-radius: 0 $radius-full $radius-full 0;
+    }
+  }
+}

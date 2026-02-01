@@ -18,7 +18,10 @@ const config = defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: '@use "styles/modules" as *;',
+        additionalData: `
+          @use "styles/modules" as *;
+          @use "sass:color";
+        `,
         loadPaths: ['src'],
       },
     },

@@ -1,13 +1,12 @@
 import { postsTable } from '@/db/schema';
 import { baseServerGetFn } from '@/lib/baseServerFn';
-import { postIdSchema } from '@/types/brand';
 import { Post } from '@/types/post';
 import { createFileRoute, notFound } from '@tanstack/react-router';
 import { eq } from 'drizzle-orm';
 import { z } from 'zod';
 
 const paramsSchema = z.object({
-  postId: postIdSchema,
+  postId: z.coerce.number(),
 });
 
 const getPostByPostId = baseServerGetFn
@@ -33,6 +32,7 @@ const getPostByPostId = baseServerGetFn
 export const Route = createFileRoute('/post/$postId/edit')({
   loader: () => getPostByPostId,
   component: RouteComponent,
+  ssr: false,
 });
 
 function RouteComponent() {
