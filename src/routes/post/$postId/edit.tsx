@@ -15,7 +15,7 @@ import {
   setThumbnail,
 } from './-stores/post';
 import { useStore } from '@tanstack/react-store';
-import { getPostByPostId, paramsSchema } from '.';
+import { getPostByPostId, paramsSchema } from '@/functions/getPostByPostId';
 
 export const Route = createFileRoute('/post/$postId/edit')({
   loader: async ({ params }) => await getPostByPostId({ data: { postId: params.postId } }),

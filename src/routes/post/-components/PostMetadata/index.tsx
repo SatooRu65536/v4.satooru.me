@@ -1,5 +1,5 @@
 import Icon, { ICON_KEYS, ICON_MAP, IconKey } from '@/components/common/Icon';
-import { EditPostSchema } from '../../-schemas/post';
+import { EditPostSchema } from '../../../../schemas/post';
 import styles from './index.module.scss';
 import MultipleSelect from '@/components/common/MultiSelect';
 import Select from '@/components/common/Select';

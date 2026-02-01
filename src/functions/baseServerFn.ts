@@ -1,5 +1,5 @@
 import { createMiddleware, createServerFn } from '@tanstack/react-start';
-import { getDb } from './db';
+import { getDb } from '../lib/db';
 import { env } from 'cloudflare:workers';
 
 const dbMiddleware = createMiddleware().server(async ({ next }) => {

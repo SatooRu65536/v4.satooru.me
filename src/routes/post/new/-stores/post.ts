@@ -1,5 +1,5 @@
 import { Store } from '@tanstack/react-store';
-import { editPostSchema, EditPostSchema } from '../../-schemas/post';
+import { editPostSchema, EditPostSchema } from '../../../../schemas/post';
 import { loadFromLocalStorage, saveToLocalStorage } from '@/utils/localStorate';
 import { IconKey } from '@/components/common/Icon';
 import { Category } from '@/consts/categories';

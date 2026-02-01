@@ -1,4 +1,4 @@
-import { baseServerPostFn } from '@/lib/baseServerFn';
+import { baseServerPostFn } from '@/functions/baseServerFn';
 import { getImageUrl, getKey } from '@/utils/img';
 
 export const uploadImageServer = baseServerPostFn
