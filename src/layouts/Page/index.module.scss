@@ -1,4 +1,10 @@
 .main {
   min-height: $main-height;
-  padding-bottom: 50px;
+  padding-bottom: $main-padding-bottom;
+
+  &[data-fixed='true'] {
+    height: $main-height-fixed;
+    padding-bottom: 0;
+    overflow: hidden;
+  }
 }

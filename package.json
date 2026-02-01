@@ -7,7 +7,7 @@
 		"build": "vite build",
 		"serve": "vite preview",
 		"generate": "drizzle-kit generate --name",
-    "migrate:local": "wrangler d1 migrations apply satooru-me --local",
+		"migrate:local": "wrangler d1 migrations apply satooru-me --local",
 		"test": "vitest run",
 		"deploy": "pnpm run build && wrangler deploy",
 		"preview": "pnpm run build && vite preview",
@@ -25,9 +25,13 @@
 		"@tanstack/router-plugin": "^1.132.0",
 		"drizzle-orm": "^0.45.1",
 		"lucide-react": "^0.544.0",
+		"marked": "^17.0.1",
 		"react": "^19.2.0",
 		"react-dom": "^19.2.0",
-		"vite-tsconfig-paths": "^5.1.4"
+		"react-markdown-editor-lite": "^1.4.2",
+		"uuid": "^13.0.0",
+		"vite-tsconfig-paths": "^5.1.4",
+		"zod": "^4.3.6"
 	},
 	"devDependencies": {
 		"@eslint/eslintrc": "^3.3.3",

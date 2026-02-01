@@ -15,10 +15,6 @@
   right: 0;
   z-index: $z-top;
 
-  &[data-fixed='true'] {
-    position: fixed;
-  }
-
   @include mobile {
     padding-inline: 20px;
   }

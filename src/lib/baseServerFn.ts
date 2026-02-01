@@ -1,4 +1,4 @@
-import { createMiddleware, createServerFn } from '@tanstack/react-start';
+import { createMiddleware, createServerFn, Method } from '@tanstack/react-start';
 import { getDb } from './db';
 import { env } from 'cloudflare:workers';
 
@@ -11,4 +11,4 @@ const dbMiddleware = createMiddleware().server(async ({ next }) => {
   });
 });
 
-export const baseServerFn = createServerFn().middleware([dbMiddleware]);
+export const baseServerFn = (method: Method) => createServerFn({ method }).middleware([dbMiddleware]);

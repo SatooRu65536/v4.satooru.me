@@ -1,4 +1,5 @@
-import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import { PostId, PostKey, PostTitle } from '@/types/brand';
+import { sqliteTable, integer, text } from 'drizzle-orm/sqlite-core';
 
 const createdAt = () =>
   integer('created_at', { mode: 'timestamp' })
@@ -10,9 +11,11 @@ const updatedAt = () =>
     .$defaultFn(() => new Date())
     .$onUpdateFn(() => new Date());
 
-export const contentsTable = sqliteTable('contents', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  path: text('path').notNull(),
+export const postsTable = sqliteTable('posts', {
+  id: integer('id').primaryKey({ autoIncrement: true }).$type<PostId>(),
+  title: text('title').notNull().$type<PostTitle>(),
+  key: text('key').notNull().unique().$type<PostKey>(),
+  icons: text('icons', { mode: 'json' }).notNull().default('[]').$type<string[]>(),
   createdAt: createdAt(),
   updatedAt: updatedAt(),
 });
