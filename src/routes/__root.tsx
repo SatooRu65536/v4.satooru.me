@@ -1,10 +1,15 @@
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router';
+import { HeadContent, Scripts, createRootRouteWithContext } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import Header from '@/components/Header';
 import appCss from '@/styles/global.scss?url';
+import { Db } from '@/lib/db';
 
-export const Route = createRootRoute({
+interface RootRouteContext {
+  db: Db;
+}
+
+export const Route = createRootRouteWithContext<RootRouteContext>()({
   head: () => ({
     meta: [
       {
@@ -25,7 +30,6 @@ export const Route = createRootRoute({
       },
     ],
   }),
-
   shellComponent: RootDocument,
 });
 
