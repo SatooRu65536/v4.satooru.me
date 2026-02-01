@@ -3,14 +3,8 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import Header from '@/components/Header';
 import appCss from '@/styles/global.scss?url';
-import { Db } from '@/lib/db';
 
-interface RootRouteContext {
-  db: Db;
-  r2: R2Bucket;
-}
-
-export const Route = createRootRouteWithContext<RootRouteContext>()({
+export const Route = createRootRouteWithContext()({
   head: () => ({
     meta: [
       {
