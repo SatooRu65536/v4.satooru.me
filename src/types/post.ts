@@ -1,7 +1,5 @@
-export interface Post {
-  id: number;
-  title: string;
+import { PostTable } from './db';
+
+export interface Post extends PostTable {
   content: string;
-  createdAt: string;
-  updatedAt: string;
 }

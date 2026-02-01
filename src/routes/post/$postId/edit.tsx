@@ -1,9 +1,16 @@
 import { postsTable } from '@/db/schema';
+import PageLayout from '@/layouts/Page';
 import { baseServerGetFn } from '@/lib/baseServerFn';
-import { Post } from '@/types/post';
 import { createFileRoute, notFound } from '@tanstack/react-router';
 import { eq } from 'drizzle-orm';
 import { z } from 'zod';
+import PostMetadata from '../-components/PostMetadata';
+import ControlPanel from '../-components/PostControlPanel';
+import PostEditor from '@/components/common/PostEditor';
+import { useEffect } from 'react';
+import { postStore, resetPost, setCategory, setContent, setIcons, setInitialPost, setTitle } from './-stores/post';
+import { Post } from '@/types/post';
+import { useStore } from '@tanstack/react-store';
 
 const paramsSchema = z.object({
   postId: z.coerce.number(),
@@ -21,22 +28,30 @@ const getPostByPostId = baseServerGetFn
     if (content == null) throw notFound();
 
     return {
-      id: contentRecord.id,
-      title: contentRecord.title,
+      ...contentRecord,
       content: await content.text(),
-      createdAt: contentRecord.createdAt.toISOString(),
-      updatedAt: contentRecord.updatedAt.toISOString(),
     };
   });
 
 export const Route = createFileRoute('/post/$postId/edit')({
-  loader: () => getPostByPostId,
+  loader: async ({ params }) => await getPostByPostId({ data: { postId: params.postId } }),
   component: RouteComponent,
   ssr: false,
 });
 
 function RouteComponent() {
-  const post: Post = Route.useLoaderData();
+  const originalPost = Route.useLoaderData();
+  const post = useStore(postStore);
 
-  return <div>{JSON.stringify(post)}</div>;
+  useEffect(() => {
+    setInitialPost(originalPost);
+  }, []);
+
+  return (
+    <PageLayout fixed>
+      <PostMetadata post={post} setTitle={setTitle} setCategory={setCategory} setIcons={setIcons} />
+      <ControlPanel post={post} resetPost={resetPost} />
+      <PostEditor markdown={post.content} onEdit={setContent} />
+    </PageLayout>
+  );
 }
