@@ -8,6 +8,7 @@
 		"serve": "vite preview",
 		"generate": "drizzle-kit generate --name",
 		"migrate:local": "wrangler d1 migrations apply satooru-me --local",
+		"migrate:remote": "wrangler d1 migrations apply satooru-me --remote",
 		"test": "vitest run",
 		"deploy": "pnpm run build && wrangler deploy",
 		"preview": "pnpm run build && vite preview",
