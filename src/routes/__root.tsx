@@ -2,7 +2,7 @@ import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import appCss from '@/styles/global.scss?url';
-import NotFound from '@/components/Notfound';
+import NotFound from '@/components/base/Notfound';
 
 export const Route = createRootRoute({
   head: () => ({

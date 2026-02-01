@@ -1,4 +1,5 @@
-import Header from '@/components/Header';
+import Footer from '@/components/base/Footer';
+import Header from '@/components/base/Header';
 import { createFileRoute, Outlet } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/_theme')({
@@ -10,6 +11,7 @@ function ThemeLayout() {
     <>
       <Header />
       <Outlet />
+      <Footer />
     </>
   );
 }
