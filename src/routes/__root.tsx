@@ -7,6 +7,7 @@ import { Db } from '@/lib/db';
 
 interface RootRouteContext {
   db: Db;
+  r2: R2Bucket;
 }
 
 export const Route = createRootRouteWithContext<RootRouteContext>()({

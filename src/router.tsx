@@ -9,7 +9,8 @@ export const getRouter = () => {
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
     context: {
-      db: getDb(env.db),
+      db: getDb(env.d1),
+      r2: env.r2,
     },
   });
 

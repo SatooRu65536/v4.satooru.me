@@ -17,10 +17,16 @@
 	],
 	"d1_databases": [
 		{
-			"binding": "db",
+			"binding": "d1",
 			"database_name": "satooru-me",
 			"database_id": "b7de037a-c0ef-4cf8-b134-46eae7d8402d",
 			"migrations_dir": "drizzle/migrations"
+		}
+	],
+	"r2_buckets": [
+		{
+			"bucket_name": "satooru-me",
+			"binding": "r2"
 		}
 	]
 }
