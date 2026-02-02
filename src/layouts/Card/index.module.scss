@@ -6,7 +6,7 @@
   position: relative;
 
   &[data-haslink='true'] {
-    transition: $transition;
+    transition: scale $transition;
     border: solid 1.5px $color-accent;
 
     &:hover {

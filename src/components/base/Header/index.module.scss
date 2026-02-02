@@ -44,7 +44,7 @@
 
     .link {
       color: $color-text;
-      transition: $transition;
+      transition: color $transition;
 
       &:hover {
         color: $color-accent;
