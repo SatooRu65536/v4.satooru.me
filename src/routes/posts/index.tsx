@@ -1,9 +1,10 @@
 import PageLayout from '@/layouts/Page';
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { z } from 'zod';
 import PostList from './-components/PostList';
 import { getPosts } from '@/functions/getPosts';
 import { CATEGORIES } from '@/consts/categories';
+import { useKeyboardShortcut } from '@/hools/useKeyboardShortcut';
 
 const searchSchema = z.object({
   page: z.coerce.number().min(1).default(1),
@@ -19,6 +20,11 @@ export const Route = createFileRoute('/posts/')({
 function RouteComponent() {
   const { page } = Route.useSearch();
   const { posts, count } = Route.useLoaderData();
+  const navigate = useNavigate();
+
+  useKeyboardShortcut({
+    onNew: () => void navigate({ to: '/post/new' }),
+  });
 
   return (
     <PageLayout>

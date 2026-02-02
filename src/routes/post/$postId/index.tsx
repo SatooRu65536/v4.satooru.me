@@ -1,11 +1,12 @@
 import styles from './index.module.scss';
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import Thumbnail from '@/components/common/Thumbnail';
 import ToHtml from '@/components/common/ToHtml';
 import PageLayout from '@/layouts/Page';
 import { getPostByPostId, paramsSchema } from '@/functions/getPostByPostId';
 import ContentLayout from '@/layouts/Content';
+import { useKeyboardShortcut } from '@/hools/useKeyboardShortcut';
 
 export const Route = createFileRoute('/post/$postId/')({
   loader: async ({ params }) => await getPostByPostId({ data: { postId: params.postId } }),
@@ -15,6 +16,12 @@ export const Route = createFileRoute('/post/$postId/')({
 
 function RouteComponent() {
   const post = Route.useLoaderData();
+  const { postId } = Route.useParams();
+  const navigate = useNavigate();
+
+  useKeyboardShortcut({
+    onEdit: () => void navigate({ to: '/post/$postId/edit', params: { postId } }),
+  });
 
   return (
     <PageLayout>

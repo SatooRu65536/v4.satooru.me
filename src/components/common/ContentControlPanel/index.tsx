@@ -1,5 +1,6 @@
 import { CheckCheckIcon, PenLineIcon, RotateCwIcon } from 'lucide-react';
 import styles from './index.module.scss';
+import { useKeyboardShortcut } from '@/hools/useKeyboardShortcut';
 
 interface ContentControlPanelProps {
   onSave: (draft: boolean) => Promise<any>;
@@ -8,6 +9,10 @@ interface ContentControlPanelProps {
 }
 
 export default function ContentControlPanel({ onSave, onReset, isPending }: ContentControlPanelProps) {
+  useKeyboardShortcut({
+    onSave: () => void onSave(true),
+  });
+
   return (
     <div className={styles.control_panel}>
       <button onClick={onReset} className={styles.reset} disabled={isPending}>

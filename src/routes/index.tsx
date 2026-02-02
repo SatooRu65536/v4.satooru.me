@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import AboutSection from './-components/sections/About';
 import LinksSection from './-components/sections/Links';
 import SkillsSection from './-components/sections/Skills';
@@ -13,6 +13,7 @@ import { getRecentPosts } from '@/functions/getRecentPosts';
 import ProductsSection from './-components/sections/Products';
 import { getProductPosts } from '@/functions/getProductPosts';
 import { getProjects } from '@/functions/getProjects';
+import { useKeyboardShortcut } from '@/hools/useKeyboardShortcut';
 
 export const Route = createFileRoute('/')({
   component: RouteComponent,
@@ -28,6 +29,11 @@ export const Route = createFileRoute('/')({
 
 function RouteComponent() {
   const { productPosts, recentPosts, projects } = Route.useLoaderData();
+  const navigate = useNavigate();
+
+  useKeyboardShortcut({
+    onNew: () => void navigate({ to: '/new' }),
+  });
 
   return (
     <PageLayout>
