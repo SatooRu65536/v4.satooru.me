@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as PostsIndexRouteImport } from './routes/posts/index'
 import { Route as NewIndexRouteImport } from './routes/new/index'
 import { Route as SlugIndexRouteImport } from './routes/$slug/index'
+import { Route as SlugEditRouteImport } from './routes/$slug/edit'
 import { Route as PostsCategoryIndexRouteImport } from './routes/posts/$category/index'
 import { Route as PostNewIndexRouteImport } from './routes/post/new/index'
 import { Route as PostPostIdIndexRouteImport } from './routes/post/$postId/index'
@@ -38,6 +39,11 @@ const SlugIndexRoute = SlugIndexRouteImport.update({
   path: '/$slug/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SlugEditRoute = SlugEditRouteImport.update({
+  id: '/$slug/edit',
+  path: '/$slug/edit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PostsCategoryIndexRoute = PostsCategoryIndexRouteImport.update({
   id: '/posts/$category/',
   path: '/posts/$category/',
@@ -61,6 +67,7 @@ const PostPostIdEditRoute = PostPostIdEditRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$slug/edit': typeof SlugEditRoute
   '/$slug/': typeof SlugIndexRoute
   '/new/': typeof NewIndexRoute
   '/posts/': typeof PostsIndexRoute
@@ -71,6 +78,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$slug/edit': typeof SlugEditRoute
   '/$slug': typeof SlugIndexRoute
   '/new': typeof NewIndexRoute
   '/posts': typeof PostsIndexRoute
@@ -82,6 +90,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$slug/edit': typeof SlugEditRoute
   '/$slug/': typeof SlugIndexRoute
   '/new/': typeof NewIndexRoute
   '/posts/': typeof PostsIndexRoute
@@ -94,6 +103,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$slug/edit'
     | '/$slug/'
     | '/new/'
     | '/posts/'
@@ -104,6 +114,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/$slug/edit'
     | '/$slug'
     | '/new'
     | '/posts'
@@ -114,6 +125,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/$slug/edit'
     | '/$slug/'
     | '/new/'
     | '/posts/'
@@ -125,6 +137,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SlugEditRoute: typeof SlugEditRoute
   SlugIndexRoute: typeof SlugIndexRoute
   NewIndexRoute: typeof NewIndexRoute
   PostsIndexRoute: typeof PostsIndexRoute
@@ -164,6 +177,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SlugIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/$slug/edit': {
+      id: '/$slug/edit'
+      path: '/$slug/edit'
+      fullPath: '/$slug/edit'
+      preLoaderRoute: typeof SlugEditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/posts/$category/': {
       id: '/posts/$category/'
       path: '/posts/$category'
@@ -197,6 +217,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SlugEditRoute: SlugEditRoute,
   SlugIndexRoute: SlugIndexRoute,
   NewIndexRoute: NewIndexRoute,
   PostsIndexRoute: PostsIndexRoute,

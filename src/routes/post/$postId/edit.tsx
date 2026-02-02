@@ -13,6 +13,7 @@ import {
   setTitle,
   setThumbnail,
   setProductIcons,
+  setProductTag,
 } from './-stores/post';
 import { useStore } from '@tanstack/react-store';
 import { getPostByPostId, paramsSchema } from '@/functions/getPostByPostId';
@@ -41,6 +42,7 @@ function RouteComponent() {
         setCategory={setCategory}
         setIcons={setProductIcons}
         setThumbnail={setThumbnail}
+        setProductTag={setProductTag}
       />
       <ControlPanel post={post} resetPost={resetPost} postId={postId} />
       <MarkdownEditor markdown={post.content} onEdit={setContent} />

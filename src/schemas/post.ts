@@ -1,5 +1,4 @@
 import { ICON_KEYS } from '@/components/common/Icon';
-import { CATEGORIES } from '@/consts/categories';
 import { postTableSchema } from '@/types/db';
 import { z } from 'zod';
 
