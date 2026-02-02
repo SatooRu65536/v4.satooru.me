@@ -132,7 +132,7 @@ export const ICON_MAP = {
   tanstack: { name: 'TanStack', icon: TanstackIcon },
 } as const;
 
-export const ICON_KEYS = getKeys(ICON_MAP);
+export const ICON_KEYS = getKeys(ICON_MAP).sort();
 
 export type IconKey = keyof typeof ICON_MAP;
 

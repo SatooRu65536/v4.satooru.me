@@ -50,7 +50,10 @@ export default function PostMetadata({
 
             <MultipleSelect<IconKey>
               className={styles.icon_select}
-              options={ICON_KEYS.map((icon) => ({ value: icon, label: ICON_MAP[icon].name }))}
+              options={ICON_KEYS.map((icon) => ({
+                value: icon,
+                label: ICON_MAP[icon].name,
+              }))}
               selectedValues={post.data.icons}
               onChange={setIcons}
               render={(value) => (
