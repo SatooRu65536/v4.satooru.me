@@ -1,3 +1,4 @@
+import styles from './index.module.scss';
 import type { ReactElement } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Prism } from 'react-syntax-highlighter';
@@ -7,7 +8,6 @@ import remarkBreaks from 'remark-breaks';
 import remarkGfm from 'remark-gfm';
 import remarkRehype from 'remark-rehype';
 import classnames from 'classnames';
-import '@/styles/md-styles.scss';
 
 interface Props {
   content: string;
@@ -16,7 +16,7 @@ interface Props {
 
 export default function ToHtml({ content, className }: Props): ReactElement {
   return (
-    <article className={classnames(className, 'md-content')}>
+    <article className={classnames(className, styles.markdown)}>
       <ReactMarkdown
         components={{
           code({ children, className, ...rest }) {
