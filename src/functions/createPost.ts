@@ -1,6 +1,7 @@
 import { postSchema, PostSchema } from '@/schemas/post';
 import { baseServerPostFn } from './baseServerFn';
 import { postsTable } from '@/db/schema';
+import { getPostKey } from '@/utils/post';
 
 export const createPost = baseServerPostFn
   .inputValidator((data: PostSchema) => data)
@@ -10,7 +11,8 @@ export const createPost = baseServerPostFn
       throw new Error(validated.error.message);
     }
 
-    const res = await context.r2.put(validated.data.title, validated.data.content);
+    const postKey = getPostKey();
+    const res = await context.r2.put(postKey, validated.data.content);
     if (res == null) throw new Error('Failed to upload content to R2');
 
     try {

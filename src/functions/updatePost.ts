@@ -11,9 +11,6 @@ export const updatePost = baseServerPostFn
       throw new Error(validated.error.message);
     }
 
-    const res = await context.r2.put(validated.data.title, validated.data.content);
-    if (res == null) throw new Error('Failed to upload content to R2');
-
     try {
       await context.db
         .update(postsTable)
@@ -23,7 +20,6 @@ export const updatePost = baseServerPostFn
           icons: validated.data.icons,
           thumbnail: validated.data.thumbnail,
           draft: validated.data.draft,
-          key: res.key,
         })
         .where(eq(postsTable.id, data.postId))
         .run();
@@ -31,9 +27,12 @@ export const updatePost = baseServerPostFn
       const postRecord = await context.db.select().from(postsTable).where(eq(postsTable.id, data.postId)).get();
       if (!postRecord) throw new Error('Failed to update post record in database');
 
+      const res = await context.r2.put(postRecord.key, validated.data.content);
+      if (res == null) throw new Error('Failed to upload content to R2');
+
       return postRecord;
     } catch (error) {
       console.error(error);
-      throw new Error('DBの更新に失敗しました');
+      throw new Error('更新に失敗しました');
     }
   });

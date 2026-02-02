@@ -1,17 +1,16 @@
-import type { DetailedHTMLProps, HTMLAttributes, ReactElement } from 'react';
+import type { ReactElement } from 'react';
 import styles from './index.module.scss';
-import { Link } from '@tanstack/react-router';
+import { Link, LinkProps } from '@tanstack/react-router';
 
-interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {
-  link?: string;
+interface CardLayoutProps extends LinkProps {
+  className?: string;
+  children: React.ReactNode;
 }
 
-export default function CardLayout(props: Props): ReactElement {
-  const { children, className, link, ...rest } = props;
-
+export default function CardLayout({ children, className, to, ...rest }: CardLayoutProps): ReactElement {
   return (
-    <article className={`${styles.card} ${className}`} {...rest} data-haslink={link !== undefined}>
-      {link !== undefined && <Link className={styles.link} to={link} />}
+    <article className={`${styles.card} ${className}`} {...rest} data-haslink={to !== undefined}>
+      {to !== undefined && <Link className={styles.link} to={to} {...rest} />}
       {children}
     </article>
   );

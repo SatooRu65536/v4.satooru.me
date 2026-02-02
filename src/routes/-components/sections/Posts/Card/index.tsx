@@ -2,25 +2,23 @@ import type { ReactElement } from 'react';
 import CardLayout from '@/layouts/Card';
 import dayjs from 'dayjs';
 import styles from './index.module.scss';
-import { Content } from '@/schemas/articles';
 import { toText } from '@/utils';
+import { Post } from '@/types/post';
 
 interface Props {
-  post: Content;
+  post: Post;
 }
 
-export default function PostCard(props: Props): ReactElement {
-  const { post } = props;
-
+export default function PostCard({ post }: Props): ReactElement {
   return (
-    <CardLayout className={styles.card} link={post.data.link}>
-      <h3 className={styles.title}>{post.data.title}</h3>
+    <CardLayout className={styles.card} to="/post/$postId" params={{ postId: post.id }}>
+      <h3 className={styles.title}>{post.title}</h3>
 
       <div className={styles.left}>
         <div className={styles.content}>
           <p>{toText(post.content).slice(0, 150)}</p>
         </div>
-        <p className={styles.date}>{dayjs(post.data.updated_at).format('YYYY/MM/DD')}</p>
+        <p className={styles.date}>{dayjs(post.createdAt).format('YYYY/MM/DD')}</p>
       </div>
 
       <div className={styles.right}>

@@ -1,10 +1,10 @@
 import { baseServerPostFn } from '@/functions/baseServerFn';
-import { getImageUrl, getKey } from '@/utils/img';
+import { getImageUrl, getImageKey } from '@/utils/img';
 
 export const uploadImageServer = baseServerPostFn
   .inputValidator((data: { content: Uint8Array; filename: string }) => data)
   .handler(async ({ context, data }) => {
-    const key = getKey(data.filename);
+    const key = getImageKey(data.filename);
 
     const res = await context.r2.put(key, data.content);
     if (res == null) throw new Error('Image upload failed');

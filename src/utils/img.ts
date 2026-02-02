@@ -1,11 +1,11 @@
 import { v4 } from 'uuid';
 
 export function getImageUrl(key: string): string {
-  return `https://img.satooru.me/${key}`;
+  return `https://assets.satooru.me/${key}`;
 }
 
-export function getKey(filename: string): string {
-  const prefix = import.meta.env.DEV ? 'dev/images/' : 'prod/images/';
+export function getImageKey(filename: string): string {
+  const prefix = import.meta.env.DEV ? 'dev/images/' : 'images/';
   const uuid = v4();
   const ext = filename.split('.').pop();
 
