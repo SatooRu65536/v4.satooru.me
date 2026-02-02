@@ -6,7 +6,9 @@ import { z } from 'zod';
 // === Additional Data Schemas ===
 
 export const productAdditionalDataSchema = z.object({
-  icons: z.enum(ICON_KEYS, 'アイコンが不正です').array(),
+  icons: z
+    .array(z.string()) // 一旦文字列として受け取る
+    .transform((arr) => arr.filter((icon) => ICON_KEYS.includes(icon))),
   tag: z.string(),
 });
 export type ProductAdditionalData = z.infer<typeof productAdditionalDataSchema>;
