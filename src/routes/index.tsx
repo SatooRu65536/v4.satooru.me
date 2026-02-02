@@ -10,15 +10,19 @@ import AwardsSection from './-components/sections/Awards';
 import PageLayout from '@/layouts/Page';
 import RecentPostsSection from './-components/sections/Posts';
 import { getRecentPosts } from '@/functions/getRecentPosts';
-// import ProductsSection from './-components/sections/Products';
+import ProductsSection from './-components/sections/Products';
+import { getProductPosts } from '@/functions/getProductPosts';
 
 export const Route = createFileRoute('/')({
   component: RouteComponent,
-  loader: async () => await getRecentPosts(),
+  loader: async () => {
+    const [productPosts, recentPosts] = await Promise.all([getProductPosts(), getRecentPosts()]);
+    return { productPosts, recentPosts };
+  },
 });
 
 function RouteComponent() {
-  const recentPosts = Route.useLoaderData();
+  const { productPosts, recentPosts } = Route.useLoaderData();
 
   return (
     <PageLayout>
@@ -31,7 +35,7 @@ function RouteComponent() {
       <PresentationsSection />
       <AwardsSection />
       <RecentPostsSection posts={recentPosts} />
-      {/* <ProductsSection /> */}
+      <ProductsSection posts={productPosts} />
     </PageLayout>
   );
 }

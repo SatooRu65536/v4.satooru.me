@@ -5,7 +5,7 @@ import { and, desc, eq } from 'drizzle-orm';
 
 export const getRecentPosts = baseServerGetFn.handler(async ({ context }): Promise<Post[]> => {
   const postRecords = await context.db.query.postsTable.findMany({
-    orderBy: desc(postsTable.category),
+    orderBy: desc(postsTable.createdAt),
     where: and(eq(postsTable.draft, false), eq(postsTable.deleted, false)),
     limit: 3,
   });

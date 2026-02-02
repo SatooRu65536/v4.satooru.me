@@ -1,4 +1,3 @@
-import type { ReactElement } from 'react';
 import {
   SiAstro,
   SiBiome,
@@ -142,7 +141,9 @@ interface Props {
   size?: number;
 }
 
-export default function Icon({ iconKey, color, ...rest }: Props): ReactElement {
+export default function Icon({ iconKey, color, ...rest }: Props) {
+  if (!ICON_KEYS.includes(iconKey)) return null;
+
   const SelectedIcon = ICON_MAP[iconKey].icon;
   const SelectedColot = color ?? 'default';
 

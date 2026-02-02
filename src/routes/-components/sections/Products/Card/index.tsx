@@ -3,34 +3,32 @@ import Icon from '@/components/common/Icon';
 import CardLayout from '@/layouts/Card';
 import dayjs from 'dayjs';
 import styles from './index.module.scss';
-import { Product } from '@/schemas/articles';
+import { PostTable } from '@/types/db';
 
 interface Props {
-  product: Product;
+  post: PostTable;
 }
 
-export default function ProductCard(props: Props): ReactElement {
-  const { product } = props;
-
+export default function ProductCard({ post }: Props): ReactElement {
+  console.log(post);
   return (
-    <CardLayout className={styles.card} link={product.data.link}>
+    <CardLayout className={styles.card} to="/post/$postId" params={{ postId: post.id }}>
       <div className={styles.left}>
-        <h3 className={styles.title}>{product.data.title}</h3>
-        <h4 className={styles.tag}>{product.data.tags?.type}</h4>
+        <h3 className={styles.title}>{post.title}</h3>
+        {/* <h4 className={styles.tag}>{post.tags?.type}</h4> */}
         <div className={styles.tech_wrapper}>
           <div>
-            {product.techIcons.map((tech) => (
-              <Icon iconKey={tech} key={tech} />
+            {post.icons.map((icon) => (
+              <Icon iconKey={icon} key={icon} />
             ))}
           </div>
         </div>
-        <p className={styles.date}>{dayjs(product.data.updated_at).format('YYYY/MM/DD')}</p>
+        <p className={styles.date}>{dayjs(post.createdAt).format('YYYY/MM/DD')}</p>
       </div>
 
       <div className={styles.right}>
-        <img alt="Thumbnail" className={styles.thumbnail} src={product.thumbnail} />
+        <img alt="Thumbnail" className={styles.thumbnail} src={post.thumbnail} />
       </div>
     </CardLayout>
   );
 }
-
