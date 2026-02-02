@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PostsIndexRouteImport } from './routes/posts/index'
+import { Route as NewIndexRouteImport } from './routes/new/index'
+import { Route as SlugIndexRouteImport } from './routes/$slug/index'
 import { Route as PostNewIndexRouteImport } from './routes/post/new/index'
 import { Route as PostPostIdIndexRouteImport } from './routes/post/$postId/index'
 import { Route as PostPostIdEditRouteImport } from './routes/post/$postId/edit'
@@ -23,6 +25,16 @@ const IndexRoute = IndexRouteImport.update({
 const PostsIndexRoute = PostsIndexRouteImport.update({
   id: '/posts/',
   path: '/posts/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewIndexRoute = NewIndexRouteImport.update({
+  id: '/new/',
+  path: '/new/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SlugIndexRoute = SlugIndexRouteImport.update({
+  id: '/$slug/',
+  path: '/$slug/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PostNewIndexRoute = PostNewIndexRouteImport.update({
@@ -43,6 +55,8 @@ const PostPostIdEditRoute = PostPostIdEditRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$slug/': typeof SlugIndexRoute
+  '/new/': typeof NewIndexRoute
   '/posts/': typeof PostsIndexRoute
   '/post/$postId/edit': typeof PostPostIdEditRoute
   '/post/$postId/': typeof PostPostIdIndexRoute
@@ -50,6 +64,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$slug': typeof SlugIndexRoute
+  '/new': typeof NewIndexRoute
   '/posts': typeof PostsIndexRoute
   '/post/$postId/edit': typeof PostPostIdEditRoute
   '/post/$postId': typeof PostPostIdIndexRoute
@@ -58,6 +74,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/$slug/': typeof SlugIndexRoute
+  '/new/': typeof NewIndexRoute
   '/posts/': typeof PostsIndexRoute
   '/post/$postId/edit': typeof PostPostIdEditRoute
   '/post/$postId/': typeof PostPostIdIndexRoute
@@ -67,15 +85,26 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$slug/'
+    | '/new/'
     | '/posts/'
     | '/post/$postId/edit'
     | '/post/$postId/'
     | '/post/new/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/posts' | '/post/$postId/edit' | '/post/$postId' | '/post/new'
+  to:
+    | '/'
+    | '/$slug'
+    | '/new'
+    | '/posts'
+    | '/post/$postId/edit'
+    | '/post/$postId'
+    | '/post/new'
   id:
     | '__root__'
     | '/'
+    | '/$slug/'
+    | '/new/'
     | '/posts/'
     | '/post/$postId/edit'
     | '/post/$postId/'
@@ -84,6 +113,8 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  SlugIndexRoute: typeof SlugIndexRoute
+  NewIndexRoute: typeof NewIndexRoute
   PostsIndexRoute: typeof PostsIndexRoute
   PostPostIdEditRoute: typeof PostPostIdEditRoute
   PostPostIdIndexRoute: typeof PostPostIdIndexRoute
@@ -104,6 +135,20 @@ declare module '@tanstack/react-router' {
       path: '/posts'
       fullPath: '/posts/'
       preLoaderRoute: typeof PostsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/new/': {
+      id: '/new/'
+      path: '/new'
+      fullPath: '/new/'
+      preLoaderRoute: typeof NewIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$slug/': {
+      id: '/$slug/'
+      path: '/$slug'
+      fullPath: '/$slug/'
+      preLoaderRoute: typeof SlugIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/post/new/': {
@@ -132,6 +177,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  SlugIndexRoute: SlugIndexRoute,
+  NewIndexRoute: NewIndexRoute,
   PostsIndexRoute: PostsIndexRoute,
   PostPostIdEditRoute: PostPostIdEditRoute,
   PostPostIdIndexRoute: PostPostIdIndexRoute,

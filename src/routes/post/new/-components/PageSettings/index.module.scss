@@ -1,0 +1,16 @@
+.metadata {
+  background-color: #f5f5f5;
+  padding: 10px 10px;
+
+  font-size: $fontsize-md;
+
+  .title {
+    font-weight: bold;
+    padding: 0 10px;
+  }
+
+  input {
+    all: unset;
+    font-size: $fontsize-md;
+  }
+}

@@ -1,7 +1,7 @@
 import { createPostSchema, CreatePostSchema } from '@/schemas/post';
 import { baseServerPostFn } from './baseServerFn';
 import { postsTable } from '@/db/schema';
-import { getPostKey } from '@/utils/post';
+import { getPostKey } from '@/utils/r2key';
 
 export const createPost = baseServerPostFn
   .inputValidator((data: CreatePostSchema) => data)

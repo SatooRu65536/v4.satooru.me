@@ -24,3 +24,12 @@ export const postsTable = sqliteTable('posts', {
   updatedAt: updatedAt(),
   deleted: integer('deleted', { mode: 'boolean' }).notNull().default(false).$type<boolean>(),
 });
+
+export const pagesTable = sqliteTable('pages', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+  slug: text('slug').notNull().unique(),
+  key: text('key').notNull().unique(),
+  draft: integer('draft', { mode: 'boolean' }).notNull().default(false).$type<boolean>(),
+  createdAt: createdAt(),
+  updatedAt: updatedAt(),
+});

@@ -1,10 +1,9 @@
-import styles from './index.module.scss';
 import { useNavigate } from '@tanstack/react-router';
-import { CheckCheckIcon, PenLineIcon, RotateCwIcon } from 'lucide-react';
 import { EditPostSchema } from '@/schemas/post';
 import { useMutation } from '@tanstack/react-query';
 import { createPost } from '@/functions/createPost';
 import { updatePost } from '@/functions/updatePost';
+import ContentControlPanel from '@/components/common/ContentControlPanel';
 
 interface ControlPanelProps {
   postId?: number;
@@ -64,20 +63,5 @@ export default function ControlPanel({ postId, post, resetPost }: ControlPanelPr
     if (isReset) resetPost();
   };
 
-  return (
-    <div className={styles.control_panel}>
-      <button onClick={onReset} className={styles.reset} disabled={isPending}>
-        <RotateCwIcon />
-      </button>
-
-      <button onClick={() => void onSave(true)} className={styles.draft} disabled={isPending}>
-        <PenLineIcon />
-        <span>Draft</span>
-      </button>
-      <button onClick={() => void onSave(false)} className={styles.ship} disabled={isPending}>
-        <CheckCheckIcon />
-        <span>Ship It!</span>
-      </button>
-    </div>
-  );
+  return <ContentControlPanel onSave={onSave} onReset={onReset} isPending={isPending} />;
 }

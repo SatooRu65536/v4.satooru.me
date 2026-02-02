@@ -1,4 +1,4 @@
-import PostEditor from '@/components/common/PostEditor';
+import MarkdownEditor from '@/components/common/MarkdownEditor';
 import PageLayout from '@/layouts/Page';
 import { createFileRoute } from '@tanstack/react-router';
 import {
@@ -39,7 +39,7 @@ function RouteComponent() {
         setThumbnail={setThumbnail}
       />
       <ControlPanel post={post} resetPost={resetPost} />
-      <PostEditor markdown={post.content} onEdit={setContent} />
+      <MarkdownEditor markdown={post.content} onEdit={setContent} />
     </PageLayout>
   );
 }

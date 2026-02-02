@@ -34,7 +34,7 @@ interface PostEditPageProps {
   onEdit: (content: string) => void;
 }
 
-export default function PostEditor({ markdown, onEdit }: PostEditPageProps) {
+export default function MarkdownEditor({ markdown, onEdit }: PostEditPageProps) {
   const renderHTML = async (text: string) => {
     const processed = await remarkProcessor.process(text);
 

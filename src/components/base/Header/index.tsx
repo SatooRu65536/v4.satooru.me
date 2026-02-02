@@ -5,7 +5,6 @@ import icon from '@/assets/icon.webp';
 
 const LINKS = [
   { title: 'Home', to: '/' },
-  { title: 'About', to: '/about' },
   { title: 'Posts', to: '/posts' },
   { title: 'Research', to: '/research' },
 ];

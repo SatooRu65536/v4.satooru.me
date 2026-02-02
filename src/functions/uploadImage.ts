@@ -1,5 +1,6 @@
 import { baseServerPostFn } from '@/functions/baseServerFn';
-import { getImageUrl, getImageKey } from '@/utils/img';
+import { getImageUrl } from '@/utils/img';
+import { getImageKey } from '@/utils/r2key';
 
 export const uploadImageServer = baseServerPostFn
   .inputValidator((data: { content: Uint8Array; filename: string }) => data)

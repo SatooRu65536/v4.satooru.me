@@ -11,7 +11,7 @@ import '@/styles/md-styles.scss';
 
 interface Props {
   content: string;
-  className: string;
+  className?: string;
 }
 
 export default function ToHtml({ content, className }: Props): ReactElement {
