@@ -9,9 +9,7 @@ interface Props {
   post: AllPostSchema;
 }
 
-export default function ListPostCard(props: Props): ReactElement {
-  const { post } = props;
-
+export default function ListPostCard({ post }: Props): ReactElement {
   return (
     <CardLayout className={styles.card} to="/post/$postId" params={{ postId: post.id }}>
       <h3 className={styles.title}>{post.title}</h3>

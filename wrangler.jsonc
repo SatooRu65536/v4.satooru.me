@@ -30,5 +30,8 @@
 			"binding": "r2",
 			"remote": true
 		}
-	]
+	],
+	"vars": {
+		"VITE_API_URL": "https://api.satooru.me"
+	}
 }

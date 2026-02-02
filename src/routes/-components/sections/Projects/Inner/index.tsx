@@ -1,5 +1,3 @@
-'use client';
-
 import { FadeIn, FadeInWithStagger } from '@/components/common/Fadein';
 import { filterIconKeys } from '@/utils/icon';
 import ProjectCard from './Card';
@@ -8,10 +6,11 @@ import { useQuery } from '@tanstack/react-query';
 import { Project } from '@/types/project';
 import { ofetch } from 'ofetch';
 import Loading from '@/components/common/Loading';
+import { env } from 'cloudflare:workers';
 
 async function fetchProjects() {
   try {
-    const url = new URL('/projects', import.meta.env.VITE_API_URL);
+    const url = new URL('/projects', import.meta.env.VITE_API_URL ?? env.VITE_API_URL);
     return await ofetch<Project[]>(url.toString(), { parseResponse: JSON.parse });
   } catch (e) {
     console.error(e);
