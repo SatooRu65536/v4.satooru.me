@@ -1,4 +1,4 @@
-import { ICON_KEYS } from '@/components/common/Icon';
+import { ICON_KEYS, IconKey } from '@/components/common/Icon';
 import { postTableSchema } from '@/types/db';
 import { z } from 'zod';
 
@@ -7,7 +7,7 @@ import { z } from 'zod';
 export const productAdditionalDataSchema = z.object({
   icons: z
     .array(z.string()) // 一旦文字列として受け取る
-    .transform((arr) => arr.filter((icon) => ICON_KEYS.includes(icon))),
+    .transform((arr) => arr.filter((icon): icon is IconKey => ICON_KEYS.includes(icon))),
   tag: z.string(),
 });
 export type ProductAdditionalData = z.infer<typeof productAdditionalDataSchema>;
