@@ -17,7 +17,6 @@ export const updatePost = baseServerPostFn
         .set({
           title: validated.data.title,
           category: validated.data.category,
-          icons: validated.data.icons,
           thumbnail: validated.data.thumbnail,
           draft: validated.data.draft,
         })

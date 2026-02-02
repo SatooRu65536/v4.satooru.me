@@ -8,6 +8,20 @@
       "when": 1769980077299,
       "tag": "0000_create-posts-table",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1770041170698,
+      "tag": "0001_add-data-column",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1770041554219,
+      "tag": "0002_remove-icons-colmun",
+      "breakpoints": true
     }
   ]
 }

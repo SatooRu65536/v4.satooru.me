@@ -63,6 +63,7 @@ import {
   SiKotlin,
 } from '@icons-pack/react-simple-icons';
 import { getKeys } from '@/utils';
+import { TanstackIcon } from './customs';
 
 export const ICON_MAP = {
   aws: { name: 'AWS', icon: SiAmazonwebservices },
@@ -128,6 +129,7 @@ export const ICON_MAP = {
   vitest: { name: 'Vitest', icon: SiVitest },
   vue: { name: 'Vue.js', icon: SiVuedotjs },
   x: { name: 'X', icon: SiX },
+  tanstack: { name: 'TanStack', icon: TanstackIcon },
 } as const;
 
 export const ICON_KEYS = getKeys(ICON_MAP);

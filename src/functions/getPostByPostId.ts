@@ -1,6 +1,6 @@
 import { postsTable } from '@/db/schema';
 import { baseServerGetFn } from '@/functions/baseServerFn';
-import { Post } from '@/types/post';
+import { PostSchema, postSchema } from '@/schemas/post';
 import { notFound } from '@tanstack/react-router';
 import { eq } from 'drizzle-orm';
 import { z } from 'zod';
@@ -11,7 +11,7 @@ export const paramsSchema = z.object({
 
 export const getPostByPostId = baseServerGetFn
   .inputValidator(paramsSchema)
-  .handler(async ({ context, data }): Promise<Post> => {
+  .handler(async ({ context, data }): Promise<PostSchema> => {
     const contentRecord = await context.db.query.postsTable.findFirst({
       where: eq(postsTable.id, data.postId),
     });
@@ -20,8 +20,9 @@ export const getPostByPostId = baseServerGetFn
     const content = await context.r2.get(contentRecord.key);
     if (content == null) throw notFound();
 
-    return {
+    const post = {
       ...contentRecord,
       content: await content.text(),
     };
+    return postSchema.parse(post);
   });

@@ -2,18 +2,18 @@ import type { ReactElement } from 'react';
 import SectionLayout from '@/layouts/Section';
 import ProductCard from './Card';
 import styles from './index.module.scss';
-import { PostTable } from '@/types/db';
+import { ProductPost } from '@/types/post';
 
 interface ProductsSectionProps {
-  posts: PostTable[];
+  products: ProductPost[];
 }
 
-export default function ProductsSection({ posts }: ProductsSectionProps): ReactElement {
+export default function ProductsSection({ products }: ProductsSectionProps): ReactElement {
   return (
     <SectionLayout title="Products" fadein={false}>
       <div className={styles.products}>
-        {posts.map((post) => (
-          <ProductCard post={post} key={post.id} />
+        {products.map((product) => (
+          <ProductCard product={product} key={product.id} />
         ))}
       </div>
     </SectionLayout>

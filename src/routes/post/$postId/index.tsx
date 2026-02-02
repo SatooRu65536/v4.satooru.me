@@ -19,7 +19,7 @@ function RouteComponent() {
     <PageLayout>
       <div className={styles.post_container}>
         <h1 className={styles.title}>{post.title}</h1>
-        <p className={styles.postedat}>{dayjs(post.updatedAt).format('YYYY年MM月DD日')}</p>
+        <p className={styles.postedat}>{dayjs(post.createdAt).format('YYYY年MM月DD日')}</p>
 
         <Thumbnail alt="thumbnail" height="300px" src={post.thumbnail} />
         <ToHtml className={styles.content} content={post.content} />

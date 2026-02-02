@@ -21,9 +21,9 @@ export const createPost = baseServerPostFn
         .values({
           title: validated.data.title,
           category: validated.data.category,
-          icons: validated.data.icons,
           thumbnail: validated.data.thumbnail,
           draft: validated.data.draft,
+          data: validated.data.data,
           key: res.key,
         })
         .returning()

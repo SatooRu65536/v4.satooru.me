@@ -41,7 +41,7 @@ export default function PostMetadata({ post, setTitle, setCategory, setIcons, se
             <MultipleSelect<IconKey>
               className={styles.icon_select}
               options={ICON_KEYS.map((icon) => ({ value: icon, label: ICON_MAP[icon].name }))}
-              selectedValues={post.icons}
+              selectedValues={post.data.icons}
               onChange={setIcons}
               render={(value) => (
                 <div className={styles.select_item}>
@@ -51,7 +51,7 @@ export default function PostMetadata({ post, setTitle, setCategory, setIcons, se
               placeholder="icons"
             />
 
-            {post.icons.map((iconKey) => (
+            {post.data.icons.map((iconKey) => (
               <Icon iconKey={iconKey} key={iconKey} />
             ))}
           </>

@@ -1,14 +1,15 @@
 import { Store } from '@tanstack/react-store';
-import { EditPostSchema, PostSchema } from '../../../../schemas/post';
+import { EditPostSchema, PostSchema } from '@/schemas/post';
 import { saveToLocalStorage } from '@/utils/localStorate';
-import { IconKey } from '@/components/common/Icon';
 import { Category } from '@/consts/categories';
+import { IconKey } from '@/components/common/Icon';
 
-const defaultPost: Omit<EditPostSchema, 'draft'> = {
+const defaultPost: EditPostSchema = {
   title: '',
   content: '',
   category: null,
-  icons: [],
+  thumbnail: '',
+  data: {},
 };
 
 const key = 'edit-post';
@@ -34,22 +35,34 @@ export const setTitle = (newTitle: string) => {
   }));
 };
 export const setCategory = (newCategory: Category | null) => {
-  postStore.setState((old) => ({
-    ...old,
-    category: newCategory,
-  }));
-};
-export const setIcons = (newIcons: IconKey[]) => {
-  postStore.setState((old) => ({
-    ...old,
-    icons: newIcons,
-  }));
-};
-export const addIcon = (icon: IconKey) => {
-  postStore.setState((old) => ({
-    ...old,
-    icons: [...old.icons, icon],
-  }));
+  if (newCategory === 'product') {
+    postStore.setState((old) => ({
+      ...old,
+      category: 'product',
+      data: {
+        icons: [],
+        tag: '',
+      },
+    }));
+  } else if (newCategory === 'kajilab') {
+    postStore.setState((old) => ({
+      ...old,
+      category: 'kajilab',
+      data: {},
+    }));
+  } else if (newCategory === 'private') {
+    postStore.setState((old) => ({
+      ...old,
+      category: 'private',
+      data: {},
+    }));
+  } else if (newCategory === 'report') {
+    postStore.setState((old) => ({
+      ...old,
+      category: 'report',
+      data: {},
+    }));
+  }
 };
 export const setThumbnail = (thumbnail: string) => {
   postStore.setState((old) => ({
@@ -57,11 +70,29 @@ export const setThumbnail = (thumbnail: string) => {
     thumbnail,
   }));
 };
-export const removeIcon = (icon: IconKey) => {
-  postStore.setState((old) => ({
-    ...old,
-    icons: old.icons.filter((i) => i !== icon),
-  }));
+export const setProductIcons = (icons: IconKey[]) => {
+  postStore.setState((old) => {
+    if (old.category !== 'product') return old;
+    return {
+      ...old,
+      data: {
+        tag: old.data?.tag ?? '',
+        icons,
+      },
+    };
+  });
+};
+export const setProductTag = (tag: string) => {
+  postStore.setState((old) => {
+    if (old.category !== 'product') return old;
+    return {
+      ...old,
+      data: {
+        icons: old.data?.icons ?? [],
+        tag,
+      },
+    };
+  });
 };
 
 export const resetPost = () => {

@@ -1,5 +1,5 @@
-import { IconKey } from '@/components/common/Icon';
 import { CATEGORIES, Category } from '@/consts/categories';
+import { AdditionalData } from '@/schemas/post';
 import { sqliteTable, integer, text } from 'drizzle-orm/sqlite-core';
 
 const createdAt = () =>
@@ -17,7 +17,7 @@ export const postsTable = sqliteTable('posts', {
   title: text('title').notNull(),
   key: text('key').notNull().unique(),
   category: text('category', { enum: CATEGORIES }).notNull().$type<Category>(),
-  icons: text('icons', { mode: 'json' }).notNull().default('[]').$type<IconKey[]>(),
+  data: text('data', { mode: 'json' }).notNull().default('{}').$type<AdditionalData>(),
   draft: integer('draft', { mode: 'boolean' }).notNull().default(false).$type<boolean>(),
   thumbnail: text('thumbnail').notNull().$type<string>(),
   createdAt: createdAt(),

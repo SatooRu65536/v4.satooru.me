@@ -6,7 +6,7 @@ import {
   resetPost,
   setCategory,
   setContent,
-  setIcons,
+  setProductIcons,
   setInitialPost,
   setThumbnail,
   setTitle,
@@ -33,7 +33,7 @@ function RouteComponent() {
         post={post}
         setTitle={setTitle}
         setCategory={setCategory}
-        setIcons={setIcons}
+        setIcons={setProductIcons}
         setThumbnail={setThumbnail}
       />
       <ControlPanel post={post} resetPost={resetPost} />

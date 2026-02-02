@@ -35,7 +35,7 @@ function RouteComponent() {
       <PresentationsSection />
       <AwardsSection />
       <RecentPostsSection posts={recentPosts} />
-      <ProductsSection posts={productPosts} />
+      <ProductsSection products={productPosts} />
     </PageLayout>
   );
 }

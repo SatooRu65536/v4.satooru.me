@@ -9,10 +9,10 @@ import {
   resetPost,
   setCategory,
   setContent,
-  setIcons,
   setInitialPost,
   setTitle,
   setThumbnail,
+  setProductIcons,
 } from './-stores/post';
 import { useStore } from '@tanstack/react-store';
 import { getPostByPostId, paramsSchema } from '@/functions/getPostByPostId';
@@ -39,7 +39,7 @@ function RouteComponent() {
         post={post}
         setTitle={setTitle}
         setCategory={setCategory}
-        setIcons={setIcons}
+        setIcons={setProductIcons}
         setThumbnail={setThumbnail}
       />
       <ControlPanel post={post} resetPost={resetPost} postId={postId} />

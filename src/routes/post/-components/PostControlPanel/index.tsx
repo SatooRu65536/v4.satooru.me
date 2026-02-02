@@ -23,13 +23,11 @@ export default function ControlPanel({ postId, post, resetPost }: ControlPanelPr
 
   const create = async (draft: boolean) => {
     try {
-      const category = post.category;
       const thumbnail = post.thumbnail;
-      if (category == null) throw new Error('カテゴリーを選択してください');
       if (thumbnail == null) throw new Error('サムネイルを設定してください');
+      if (post.category == null) throw new Error('カテゴリーを選択してください');
 
-      const icons = category === 'product' ? post.icons : [];
-      const res = await createPost({ data: { ...post, category, thumbnail, icons, draft } });
+      const res = await createPost({ data: { ...post, thumbnail, draft } });
       resetPost();
       await navigate({ to: '/post/$postId', params: { postId: res.id } });
     } catch (error) {
@@ -44,13 +42,11 @@ export default function ControlPanel({ postId, post, resetPost }: ControlPanelPr
 
   const update = async (draft: boolean, postId: number) => {
     try {
-      const category = post.category;
       const thumbnail = post.thumbnail;
-      if (category == null) throw new Error('カテゴリーを選択してください');
+      if (post.category == null) throw new Error('カテゴリーを選択してください');
       if (thumbnail == null) throw new Error('サムネイルを設定してください');
 
-      const icons = category === 'product' ? post.icons : [];
-      await updatePost({ data: { ...post, category, thumbnail, icons, draft, postId } });
+      await updatePost({ data: { ...post, thumbnail, draft, postId } });
       resetPost();
       await navigate({ to: '/post/$postId', params: { postId } });
     } catch (error) {
