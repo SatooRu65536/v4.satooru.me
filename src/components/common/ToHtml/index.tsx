@@ -16,7 +16,7 @@ interface Props {
 
 export default function ToHtml({ content, className }: Props): ReactElement {
   return (
-    <article className={classnames(className)}>
+    <article className={classnames(className, 'md-content')}>
       <ReactMarkdown
         components={{
           code({ children, className, ...rest }) {
