@@ -1,10 +1,10 @@
-import { postSchema, PostSchema } from '@/schemas/post';
+import { postSchema, CreatePostSchema } from '@/schemas/post';
 import { baseServerPostFn } from './baseServerFn';
 import { postsTable } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 
 export const updatePost = baseServerPostFn
-  .inputValidator((data: PostSchema & { postId: number }) => data)
+  .inputValidator((data: CreatePostSchema & { postId: number }) => data)
   .handler(async ({ context, data }) => {
     const validated = postSchema.safeParse(data);
     if (!validated.success) {

@@ -10,6 +10,7 @@ import {
   setInitialPost,
   setThumbnail,
   setTitle,
+  setProductTag,
 } from './-stores/post';
 import { useStore } from '@tanstack/react-store';
 import ControlPanel from '../-components/PostControlPanel';
@@ -34,6 +35,7 @@ function RouteComponent() {
         setTitle={setTitle}
         setCategory={setCategory}
         setIcons={setProductIcons}
+        setProductTag={setProductTag}
         setThumbnail={setThumbnail}
       />
       <ControlPanel post={post} resetPost={resetPost} />

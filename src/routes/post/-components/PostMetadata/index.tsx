@@ -13,10 +13,18 @@ interface PostMetadataProps {
   setTitle: (title: string) => void;
   setCategory: (category: Category | null) => void;
   setIcons: (icons: IconKey[]) => void;
+  setProductTag: (tag: string) => void;
   setThumbnail: (thumbnail: string) => void;
 }
 
-export default function PostMetadata({ post, setTitle, setCategory, setIcons, setThumbnail }: PostMetadataProps) {
+export default function PostMetadata({
+  post,
+  setTitle,
+  setCategory,
+  setIcons,
+  setProductTag,
+  setThumbnail,
+}: PostMetadataProps) {
   const onTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
@@ -38,6 +46,8 @@ export default function PostMetadata({ post, setTitle, setCategory, setIcons, se
 
         {post.category === 'product' && (
           <>
+            <input type="text" onChange={(e) => setProductTag(e.target.value)} value={post.data.tag} />
+
             <MultipleSelect<IconKey>
               className={styles.icon_select}
               options={ICON_KEYS.map((icon) => ({ value: icon, label: ICON_MAP[icon].name }))}

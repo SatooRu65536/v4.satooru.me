@@ -1,12 +1,12 @@
-import { postSchema, PostSchema } from '@/schemas/post';
+import { createPostSchema, CreatePostSchema } from '@/schemas/post';
 import { baseServerPostFn } from './baseServerFn';
 import { postsTable } from '@/db/schema';
 import { getPostKey } from '@/utils/post';
 
 export const createPost = baseServerPostFn
-  .inputValidator((data: PostSchema) => data)
+  .inputValidator((data: CreatePostSchema) => data)
   .handler(async ({ context, data }) => {
-    const validated = postSchema.safeParse(data);
+    const validated = createPostSchema.safeParse(data);
     if (!validated.success) {
       throw new Error(validated.error.message);
     }

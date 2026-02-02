@@ -18,7 +18,7 @@ export type AdditionalData = z.infer<typeof additionalDataSchema>;
 
 // === Post Schemas ===
 
-export const basePostSchema = postTableSchema.extend({
+const basePostSchema = postTableSchema.extend({
   title: z.string().min(1, 'タイトルを入力してください'),
   content: z.string().min(1, 'コンテンツを入力してください'),
   thumbnail: z.url('サムネイルのURLが不正です'),
@@ -40,33 +40,34 @@ export const reportPostSchema = basePostSchema.extend({
   category: z.literal('report'),
   data: noneProductAdditionalDataSchema,
 });
+
 export const postSchema = z.union([productPostSchema, kajilabPostSchema, privatePostSchema, reportPostSchema]);
 export type PostSchema = z.infer<typeof postSchema>;
 
 // === Edit Post Schemas ===
 
-export const editDefaultPostSchema = z.object({
+const editBasePostSchema = z.object({
   title: z.string(),
   content: z.string(),
   thumbnail: z.url('サムネイルのURLが不正です').optional(),
 });
-export const editNoneSelectedPostSchema = editDefaultPostSchema.extend({
+export const editNoneSelectedPostSchema = editBasePostSchema.extend({
   category: z.null(),
   data: noneProductAdditionalDataSchema,
 });
-export const editProductPostSchema = editDefaultPostSchema.extend({
+export const editProductPostSchema = editBasePostSchema.extend({
   category: z.literal('product'),
   data: productAdditionalDataSchema,
 });
-export const editPrivatePostSchema = editDefaultPostSchema.extend({
+export const editPrivatePostSchema = editBasePostSchema.extend({
   category: z.literal('private'),
   data: noneProductAdditionalDataSchema,
 });
-export const editKajilabPostSchema = editDefaultPostSchema.extend({
+export const editKajilabPostSchema = editBasePostSchema.extend({
   category: z.literal('kajilab'),
   data: noneProductAdditionalDataSchema,
 });
-export const editReportPostSchema = editDefaultPostSchema.extend({
+export const editReportPostSchema = editBasePostSchema.extend({
   category: z.literal('report'),
   data: noneProductAdditionalDataSchema,
 });
@@ -78,3 +79,35 @@ export const editPostSchema = z.union([
   editReportPostSchema,
 ]);
 export type EditPostSchema = z.infer<typeof editPostSchema>;
+
+// === Create Post Schema ===
+const createBasePostSchema = z.object({
+  title: z.string().min(1, 'タイトルを入力してください'),
+  content: z.string().min(1, 'コンテンツを入力してください'),
+  thumbnail: z.url('サムネイルのURLが不正です'),
+  draft: z.boolean(),
+});
+export const createProductPostSchema = createBasePostSchema.extend({
+  category: z.literal('product'),
+  data: productAdditionalDataSchema,
+});
+export const createKajilabPostSchema = createBasePostSchema.extend({
+  category: z.literal('kajilab'),
+  data: noneProductAdditionalDataSchema,
+});
+export const createPrivatePostSchema = createBasePostSchema.extend({
+  category: z.literal('private'),
+  data: noneProductAdditionalDataSchema,
+});
+export const createReportPostSchema = createBasePostSchema.extend({
+  category: z.literal('report'),
+  data: noneProductAdditionalDataSchema,
+});
+
+export const createPostSchema = z.union([
+  createProductPostSchema,
+  createKajilabPostSchema,
+  createPrivatePostSchema,
+  createReportPostSchema,
+]);
+export type CreatePostSchema = z.infer<typeof createPostSchema>;
