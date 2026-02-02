@@ -3,20 +3,13 @@ import { FadeIn, FadeInWithStagger } from '@/components/common/Fadein';
 import { filterIconKeys } from '@/utils/icon';
 import ProjectCard from './Card';
 import styles from './index.module.scss';
-import { useQuery } from '@tanstack/react-query';
-import Loading from '@/components/common/Loading';
-import { getProjects } from '@/functions/getProjects';
+import { Project } from '@/types/project';
 
-export default function ProjectsSection() {
-  const { data: projects, isPending } = useQuery({
-    queryKey: ['projects'],
-    queryFn: getProjects,
-  });
+interface Props {
+  projects: Project[];
+}
 
-  if (isPending) {
-    return <Loading />;
-  }
-
+export default function ProjectsSection({ projects }: Props) {
   return (
     <SectionLayout title="Active Projects">
       <FadeInWithStagger className={styles.fade_wrapper}>

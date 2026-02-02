@@ -20,6 +20,7 @@ export const postsTable = sqliteTable('posts', {
   data: text('data', { mode: 'json' }).notNull().default('{}').$type<AdditionalData>(),
   draft: integer('draft', { mode: 'boolean' }).notNull().default(false).$type<boolean>(),
   thumbnail: text('thumbnail').notNull().$type<string>(),
+  previewText: text('preview_text').notNull().$type<string>(),
   createdAt: createdAt(),
   updatedAt: updatedAt(),
   deleted: integer('deleted', { mode: 'boolean' }).notNull().default(false).$type<boolean>(),

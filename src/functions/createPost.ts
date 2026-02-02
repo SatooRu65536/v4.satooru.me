@@ -22,6 +22,7 @@ export const createPost = baseServerPostFn
           title: validated.data.title,
           category: validated.data.category,
           thumbnail: validated.data.thumbnail,
+          previewText: validated.data.content.slice(0, 200),
           draft: validated.data.draft,
           data: validated.data.data,
           key: res.key,

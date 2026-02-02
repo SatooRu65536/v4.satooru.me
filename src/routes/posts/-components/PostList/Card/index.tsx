@@ -2,11 +2,10 @@ import type { ReactElement } from 'react';
 import CardLayout from '@/layouts/Card';
 import dayjs from 'dayjs';
 import styles from './index.module.scss';
-import { toText } from '@/utils';
-import { AllPostSchema } from '@/schemas/post';
+import { PostTable } from '@/types/db';
 
 interface Props {
-  post: AllPostSchema;
+  post: PostTable;
 }
 
 export default function ListPostCard({ post }: Props): ReactElement {
@@ -16,7 +15,7 @@ export default function ListPostCard({ post }: Props): ReactElement {
 
       <div className={styles.left}>
         <div className={styles.content}>
-          <p>{toText(post.content).slice(0, 150)}</p>
+          <p>{post.previewText}</p>
         </div>
         <p className={styles.date}>{dayjs(post.createdAt).format('YYYY/MM/DD')}</p>
       </div>

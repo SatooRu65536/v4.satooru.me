@@ -12,24 +12,29 @@ import RecentPostsSection from './-components/sections/Posts';
 import { getRecentPosts } from '@/functions/getRecentPosts';
 import ProductsSection from './-components/sections/Products';
 import { getProductPosts } from '@/functions/getProductPosts';
+import { getProjects } from '@/functions/getProjects';
 
 export const Route = createFileRoute('/')({
   component: RouteComponent,
   loader: async () => {
-    const [productPosts, recentPosts] = await Promise.all([getProductPosts(), getRecentPosts()]);
-    return { productPosts, recentPosts };
+    const [productPosts, recentPosts, projects] = await Promise.all([
+      getProductPosts(),
+      getRecentPosts(),
+      getProjects(),
+    ]);
+    return { productPosts, recentPosts, projects };
   },
 });
 
 function RouteComponent() {
-  const { productPosts, recentPosts } = Route.useLoaderData();
+  const { productPosts, recentPosts, projects } = Route.useLoaderData();
 
   return (
     <PageLayout>
       <AboutSection />
       <LinksSection />
       <SkillsSection />
-      <ProjectsSection />
+      <ProjectsSection projects={projects} />
       <WorksSection />
       <ExperiencesSection />
       <PresentationsSection />

@@ -1,14 +1,14 @@
 import styles from './index.module.scss';
-import { AllPostSchema } from '@/schemas/post';
 import { Category } from '@/consts/categories';
 import PostCategories from '@/components/common/PostCategories';
 import ListPostCard from './Card';
 import PageNation, { PageToFn } from '@/components/common/Pagenation';
+import { PostTable } from '@/types/db';
 
 interface Props {
   page: number;
   count: number;
-  posts: AllPostSchema[];
+  posts: PostTable[];
   category?: Category;
   categories: readonly Category[];
 }
