@@ -50,6 +50,7 @@
 		"remark-breaks": "^4.0.0",
 		"remark-gfm": "^4.0.1",
 		"remark-rehype": "^11.1.2",
+		"remeda": "^2.33.4",
 		"uuid": "^13.0.0",
 		"vite-tsconfig-paths": "^5.1.4",
 		"zod": "^4.3.6"

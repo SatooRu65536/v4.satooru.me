@@ -1,4 +1,5 @@
 import { ICON_KEYS } from '@/components/common/Icon';
+import { CATEGORIES } from '@/consts/categories';
 import { postTableSchema } from '@/types/db';
 import { z } from 'zod';
 
@@ -43,6 +44,11 @@ export const reportPostSchema = basePostSchema.extend({
 
 export const postSchema = z.union([productPostSchema, kajilabPostSchema, privatePostSchema, reportPostSchema]);
 export type PostSchema = z.infer<typeof postSchema>;
+
+export const allPostSchema = basePostSchema.extend({
+  category: z.enum(CATEGORIES),
+});
+export type AllPostSchema = z.infer<typeof allPostSchema>;
 
 // === Edit Post Schemas ===
 

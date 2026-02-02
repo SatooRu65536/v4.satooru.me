@@ -12,7 +12,7 @@ export const getPage = baseServerGetFn.inputValidator(paramsSchema).handler(asyn
   const pageRecord = await context.db.query.pagesTable.findFirst({
     where: eq(pagesTable.slug, data.slug),
   });
-  console.log(pageRecord);
+
   if (pageRecord == undefined) throw notFound();
 
   const content = await context.r2.get(pageRecord.key);
