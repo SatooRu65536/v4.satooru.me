@@ -18,7 +18,6 @@ export const getRecentPosts = baseServerGetFn.handler(async ({ context }): Promi
       return { ...postRecord, content: await obj.text() } satisfies Post;
     }),
   );
-  console.log(posts);
 
   return posts.filter((post): post is Post => post != null);
 });

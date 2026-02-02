@@ -8,7 +8,6 @@ interface ImageDropZoneProps {
 }
 
 export function ImageDropZone({ value, onChange }: ImageDropZoneProps) {
-  console.log({ value });
   const onDrop = (files: File[]) => {
     if (files.length !== 1) {
       alert('画像は1枚だけアップロードしてください。');
