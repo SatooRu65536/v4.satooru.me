@@ -13,6 +13,10 @@
 		{
 			"custom_domain": true,
 			"pattern": "v4.satooru.me"
+		},
+		{
+			"custom_domain": true,
+			"pattern": "satooru.me"
 		}
 	],
 	"d1_databases": [
