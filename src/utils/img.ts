@@ -5,7 +5,7 @@ export function getImageUrl(key: string): string {
 }
 
 export function getImageKey(filename: string): string {
-  const prefix = import.meta.env.DEV ? 'dev/images/' : 'images/';
+  const prefix = 'images/';
   const uuid = v4();
   const ext = filename.split('.').pop();
 

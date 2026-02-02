@@ -10,7 +10,6 @@ interface Props {
 }
 
 export default function ProductCard({ post }: Props): ReactElement {
-  console.log(post);
   return (
     <CardLayout className={styles.card} to="/post/$postId" params={{ postId: post.id }}>
       <div className={styles.left}>
