@@ -1,0 +1,36 @@
+.button {
+  all: unset;
+
+  padding: 3px 5px;
+  height: fit-content;
+
+  display: inline-flex;
+  align-items: center;
+  gap: $gap-md;
+
+  color: $color-primary;
+  border: solid 1px $color-accent;
+  border-radius: $radius-md;
+  transition: background-color $transition;
+  background-color: $color-background;
+
+  cursor: pointer;
+
+  .icon {
+    line-height: $fontsize-base;
+
+    svg {
+      width: $fontsize-base;
+      height: $fontsize-base;
+    }
+  }
+
+  .children {
+    font-size: $fontsize-md;
+    font-weight: bold;
+  }
+
+  &:hover {
+    background-color: color.mix($color-primary, $color-background, 10%);
+  }
+}
